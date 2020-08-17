@@ -27,10 +27,10 @@ runs:
   using: docker
   image: Dockerfile
   args:
-    - ${remote-repo}
-    - ${api-token}
-    - ${submodue-path}
-    - ${remote-branch}
+    - ${{inputs.remote-repo}}
+    - ${{inputs.api-token}}
+    - ${{inputs.submodule-path}}
+    - ${{inputs.remote-branch}}
 
 branding:
   icon: git-commit
