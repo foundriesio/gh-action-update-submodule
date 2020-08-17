@@ -19,6 +19,13 @@ e.g. https://source.foundries.io/factories/andy-corp/containers.git
 API token from https://app.foundries.io/settings/token that can access the
 remote repo.
 
+You can make the token availble to your action with:
+
+  * Go to the Github page for the repository that you push from, click on "Settings"
+  * On the left hand side pane click on "Secrets"
+  * Click on "Add a new secret" and name it "FOUNDRIES_API_TOKEN"
+
+
 ### `submodule-path` (argument)
 Path to this repository in the remote repository. e.g. ./container-submod
 
@@ -32,8 +39,8 @@ Branch on the remote repository to checkout/push to. e.g. `devel`.
       - name: Update containers.git
         uses: foundriesio/gh-action-update-submodule@master
         with:
-	  remote-repo: https://source.foundries.io/factories/andy-corp/containers.git
-	  api-token: ${{ secrets.FOUNDRIES_API_TOKEN }}
-	  submodule-path: ./containers-submod
-	  remote-branch: ${GITHUB_REF##*/}
+          remote-repo: https://source.foundries.io/factories/andy-corp/containers.git
+          api-token: ${{ secrets.FOUNDRIES_API_TOKEN }}
+          submodule-path: ./containers-submod
+          remote-branch: ${GITHUB_REF##*/}
 ```
