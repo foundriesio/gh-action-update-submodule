@@ -34,13 +34,24 @@ Branch on the remote repository to checkout/push to. e.g. `devel`.
 
 ## Example usage
 ```yaml
-      - name: Clone repo
-        uses: actions/checkout@v2
-      - name: Update containers.git
-        uses: foundriesio/gh-action-update-submodule@master
-        with:
-          remote-repo: https://source.foundries.io/factories/andy-corp/containers.git
-          api-token: ${{ secrets.FOUNDRIES_API_TOKEN }}
-          submodule-path: ./containers-submod
-          remote-branch: ${GITHUB_REF##*/}
+# .github/workflows/source-fio-update.yml
+
+name: Update source.foundries.io
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE
+    - uses: actions/checkout@v2
+    - uses: doanac/gh-action-update-submodule@master
+      with:
+        remote-repo: https://source.foundries.io/factories/andy-corp/containers.git
+        api-token: ${{ secrets.FOUNDRIES_API_TOKEN }}
+        submodule-path: "./container-submod"
+        remote-branch: ${{ github.ref }}
 ```
