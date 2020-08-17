@@ -1,0 +1,37 @@
+name: Update reference to this repository in another repository's submodule
+description: |
+  This action is handy for customer's a containers.git uses Git submodules
+  that live in a private GitHub repository. Most of the development wil take
+  place in the private GitHub repository and it becomes a pain for developer's
+  to remember to update the submodule reference in containers.git each time
+  code is merged to the GitHub repository. This action clones containers.git,
+  updates to the submodule reference, commit and pushes the change to
+  source.foundries.io so that a CI job will be triggered there to produce a
+  new Target.
+
+inputs:
+  remote-repo:
+    description: The remote repo to update. eg https://source.foundries.io/factories/<foo>/containers.git
+    required: true
+  api-token:
+    description: API token to be used for accessing ${remote-repo}
+    required: true
+  submodule-path:
+    description: Path to this submodule in ${remote-repo}
+    required: true
+  remote-branch:
+    description: Remote branch to push update to
+    required: true
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${remote-repo}
+    - ${api-token}
+    - ${submodue-path}
+    - ${remote-branch}
+
+branding:
+  icon: git-commit
+  color: green
