@@ -22,6 +22,9 @@ inputs:
   remote-branch:
     description: Remote branch to push update to
     required: true
+  commit-message:
+    description: Git commit message to use for submodule update
+    required: false
 
 runs:
   using: docker
@@ -31,6 +34,7 @@ runs:
     - ${{inputs.api-token}}
     - ${{inputs.submodule-path}}
     - ${{inputs.remote-branch}}
+    - ${{inputs.commit-message}}
 
 branding:
   icon: git-commit
