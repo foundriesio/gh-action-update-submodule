@@ -15,6 +15,7 @@ git submodule init
 rm -rf $SUBMOD_PATH
 mkdir -p $(dirname SUBMOD_PATH)
 cp -r $GITHUB_WORKSPACE $SUBMOD_PATH
-git commit -m "Bump $SUBMOD_PATH from GitHub action" $SUBMOD_PATH
+GITLOG="$(git --git-dir=$SUBMOD_PATH log --format=%s -1)"
+git commit -m "Bump $SUBMOD_PATH: $GITLOG" $SUBMOD_PATH
 
 git -c http.extraheader="$HEADER" push $REMOTE_REPO
