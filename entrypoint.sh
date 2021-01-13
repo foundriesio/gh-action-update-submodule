@@ -4,7 +4,7 @@ REMOTE_REPO="$1"
 API_TOKEN="$2"
 SUBMOD_PATH="$3"
 REMOTE_BRANCH="${4##*/}"
-GITLOG="$5"
+GITLOG="${5:-"from GitHub action"}"
 
 HEADER="Authorization: Basic $(echo -n $API_TOKEN | base64)"
 

@@ -24,7 +24,7 @@ inputs:
     required: true
   commit-message:
     description: Git commit message to use for submodule update
-    required: true
+    required: false
 
 runs:
   using: docker
